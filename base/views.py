@@ -14,7 +14,7 @@ from .forms import  Roomform
 def loginview(request):
     page = 'login'
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('Home')
     
     if request.method == 'POST':
         username = request.POST.get('username').lower()
@@ -29,7 +29,7 @@ def loginview(request):
         
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('Home')
         else:
             messages.error(request, 'Username OR password does not exit')
     context = {'page': page}
@@ -37,7 +37,7 @@ def loginview(request):
  
 def logoutUser(request):
    logout(request)
-   return redirect('home')
+   return redirect('Home')
    
    
 def registerUser(request):
@@ -50,7 +50,7 @@ def registerUser(request):
             user.username = user.username.lower()
             user.save()
             login(request, user)
-            return redirect('home')
+            return redirect('Home')
         else:
             messages.error(request, 'An erro occured during registration')
     
